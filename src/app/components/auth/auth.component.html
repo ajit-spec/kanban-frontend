@@ -1,0 +1,169 @@
+<ng-container>
+
+  <ng-container *ngIf="showAlert">
+    <div class="alert alert-success" role="alert"
+    [ngClass]="{
+      'alert-success': isSuccess,
+      'alert-danger': !isSuccess
+    }">
+      <p>{{alertMsg}}</p>
+    </div>
+  </ng-container>
+
+  <div
+    class="register-container"
+    *ngIf="dontHaveAccount"
+
+  >
+    <h2>Register</h2>
+    <form novalidate
+    [formGroup]="registerForm"
+    (ngSubmit)="onSubmitRegister()">
+      <div class="form-group">
+        <label for="username-register">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="username-register"
+          aria-describedby="username-register"
+          placeholder="Enter username"
+          formControlName="username-register"
+        />
+        <small
+          *ngIf="
+          getFormControl('username-register', 'registerForm')?.dirty &&
+            createErrorMessage('username-register', 'registerForm').showError
+          "
+          class="text-danger"
+        >
+          {{ createErrorMessage("username-register", 'registerForm').errorMessage }}
+        </small>
+      </div>
+      <div class="form-group">
+        <label for="contact-register">Contact</label>
+        <input
+          type="number"
+          class="form-control"
+          id="contact-register"
+          aria-describedby="contact-register"
+          placeholder="Enter contact"
+          formControlName="contact-register"
+        />
+        <small
+        *ngIf="
+        getFormControl('contact-register', 'registerForm')?.dirty &&
+          createErrorMessage('contact-register', 'registerForm').showError
+        "
+        class="text-danger"
+      >
+        {{ createErrorMessage("contact-register", 'registerForm').errorMessage }}
+      </small>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email-register"
+          aria-describedby="email-register"
+          placeholder="Enter email"
+          formControlName="email-register"
+        />
+        <small
+        *ngIf="
+        getFormControl('email-register', 'registerForm')?.dirty &&
+          createErrorMessage('email-register', 'registerForm').showError
+        "
+        class="text-danger"
+      >
+        {{ createErrorMessage("email-register", 'registerForm').errorMessage }}
+      </small>
+      </div>
+      <div class="form-group">
+        <label for="password-register">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password-register"
+          placeholder="Enter password"
+          formControlName="password-register"
+        />
+        <small
+        *ngIf="
+        getFormControl('password-register', 'registerForm')?.dirty &&
+          createErrorMessage('password-register', 'registerForm').showError
+        "
+        class="text-danger"
+      >
+        {{ createErrorMessage("password-register", 'registerForm').errorMessage }}
+      </small>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Register</button>
+    </form>
+    <p>
+      Already have an account?
+      <span class="text-primary" [routerLink]="['/', 'auth', 'login']"
+        >Login</span
+      >
+    </p>
+  </div>
+
+  <div class="login-container" *ngIf="!dontHaveAccount">
+    <h2>Login</h2>
+    <form novalidate
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmitLogin()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          class="form-control"
+          id="email-login"
+          aria-describedby="email-login"
+          placeholder="Enter email"
+          formControlName="email-login"
+        />
+        <small
+        *ngIf="
+        getFormControl('email-login', 'loginForm')?.dirty &&
+          createErrorMessage('email-login', 'loginForm').showError
+        "
+        class="text-danger"
+      >
+        {{ createErrorMessage("email-login", 'loginForm').errorMessage }}
+      </small>
+      </div>
+      <div class="form-group">
+        <label for="password-login">Password</label>
+        <input
+          type="password"
+          class="form-control"
+          id="password-login"
+          placeholder="Enter password"
+          formControlName="password-login"
+        />
+        <small
+        *ngIf="
+        getFormControl('password-login', 'loginForm')?.dirty &&
+          createErrorMessage('password-login', 'loginForm').showError
+        "
+        class="text-danger"
+      >
+        {{ createErrorMessage("password-login", 'loginForm').errorMessage }}
+      </small>
+      </div>
+
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+    <p>
+      Don't have an account?
+      <span class="text-primary" [routerLink]="['/', 'auth', 'register']"
+        >Register</span
+      >
+    </p>
+  </div>
+
+
+</ng-container>
+

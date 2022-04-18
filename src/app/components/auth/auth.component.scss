@@ -1,0 +1,19 @@
+.register-container,
+.login-container {
+    width: 30rem;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 2rem;
+
+    h2,p {
+        text-align: center;
+    }
+
+    p {
+        span {
+            cursor: pointer;
+        }
+    }
+}
